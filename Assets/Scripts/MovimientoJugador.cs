@@ -24,6 +24,9 @@ public class MovimientoJugador : MonoBehaviour
     public float walkSpeed = 3f;
     public float runSpeed = 6f;
 
+
+    public float jumpForce = 5f;
+
     //bailar
     private bool isDancing;
 
@@ -89,12 +92,21 @@ public class MovimientoJugador : MonoBehaviour
         isRunning = context.ReadValueAsButton();
     }
 
+    //salto
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.performed && controller.isGrounded)
+        {
+            verticalVelocity = jumpForce;
+            animator.SetTrigger("Jump");
+        }
+    }
+
     //bailar
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Debug.Log("INTERACT FUNCIONA");
             isDancing = !isDancing;
         }
     }
@@ -106,5 +118,7 @@ public class MovimientoJugador : MonoBehaviour
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("IsRunning", isRunning && isMoving);
         animator.SetBool("IsDancing", isDancing);
+        animator.SetBool("Grounded", controller.isGrounded);
+        animator.SetFloat("VerticalVelocity", verticalVelocity);
     }
 }
