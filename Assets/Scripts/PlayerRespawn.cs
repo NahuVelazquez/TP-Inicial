@@ -26,9 +26,8 @@ public class PlayerRespawn : MonoBehaviour
     public void Respawn()
     {
         controller.enabled = false;
-
         transform.position = respawnPoint.position;
-
         controller.enabled = true;
     }
 }
+
