@@ -66,10 +66,18 @@ public class Timer : MonoBehaviour
     {
         Debug.Log("Tiempo agotado.");
 
-        // Notifica al GameManager si está asignado (gancho para US21/US22)
+        //Timer avisa al GameManager que termine la partida
         if (gameManager != null)
         {
-            // gameManager.OnTimeOut(); // Lo descomentamos cuando sumemos el método en GameManager
+            gameManager.EndMatch();
+        }
+        else
+        {
+            GameManager gm = FindAnyObjectByType<GameManager>();
+            if (gm != null)
+            {
+                gm.EndMatch();
+            }
         }
     }
 }
