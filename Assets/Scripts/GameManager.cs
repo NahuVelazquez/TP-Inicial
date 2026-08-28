@@ -29,6 +29,16 @@ public class GameManager : MonoBehaviour
         collectedItemsCount = 0;
         isGameOver = false;
 
+        // si se tilda isMultiplayer en el Inspector para testear, actualiza GameModeManager; sino toma el valor que vino del Menú Principal
+        if (isMultiplayer)
+        {
+            GameModeManager.multiplayer = true;
+        }
+        else
+        {
+            isMultiplayer = GameModeManager.multiplayer;
+        }
+
         // cuenta cantidad de coleccionables en la escena
         totalCollectiblesCount = FindObjectsByType<Collectible>(FindObjectsSortMode.None).Length;
 
@@ -165,6 +175,9 @@ public class GameManager : MonoBehaviour
     // metodo para asociar al botón de Reiniciar en la UI (US24)
     public void RestartMatch()
     {
+        // eestaura la escala de tiempo a normal por si la partida se pausó al finalizar
+        Time.timeScale = 1f;
+
         // recarga la escena desde cero resetea coleccionables, cronómetro y posiciones
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
