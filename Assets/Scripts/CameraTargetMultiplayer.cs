@@ -8,9 +8,20 @@ public class CameraTargetMultiplayer : MonoBehaviour
 
     public CinemachineCamera camara;
 
-    public float distanciaMinima = 2f;
-    public float distanciaMaxima = 8f;
-    public float separacionMaxima = 15f;
+    [Header("Objetivo")]
+    public float alturaObjetivo = 1.5f;
+    public float suavidadMovimiento = 8f;
+
+    [Header("Zoom")]
+    public float distanciaMinimaCamara = 5f;
+    public float distanciaMaximaCamara = 12f;
+
+    [Header("Separación")]
+    public float separacionMinima = 3f;
+    public float separacionMaxima = 12f;
+
+    [Header("Suavidad del zoom")]
+    public float velocidadZoom = 3f;
 
     private CinemachineThirdPersonFollow thirdPersonFollow;
 
@@ -18,7 +29,8 @@ public class CameraTargetMultiplayer : MonoBehaviour
     {
         if (camara != null)
         {
-            thirdPersonFollow = camara.GetComponent<CinemachineThirdPersonFollow>();
+            thirdPersonFollow =
+                camara.GetComponent<CinemachineThirdPersonFollow>();
         }
     }
 
@@ -27,38 +39,60 @@ public class CameraTargetMultiplayer : MonoBehaviour
         if (jugador1 == null || jugador2 == null)
             return;
 
-        // Punto medio entre los jugadores
-        Vector3 puntoMedio = (jugador1.position + jugador2.position) / 2f;
+        // ==========================================
+        // PUNTO MEDIO
+        // ==========================================
 
-        // Mantener la altura del objetivo
-        puntoMedio.y = transform.position.y;
+        Vector3 puntoMedio =
+            (jugador1.position + jugador2.position) / 2f;
 
-        transform.position = puntoMedio;
+        puntoMedio.y += alturaObjetivo;
 
-        // Mantener la orientación de la cámara del jugador 1
-        Transform pivotP1 = jugador1.Find("CameraPivot");
+        transform.position = Vector3.Lerp(
+            transform.position,
+            puntoMedio,
+            suavidadMovimiento * Time.deltaTime
+        );
 
-        if (pivotP1 != null)
-        {
-            transform.rotation = pivotP1.rotation;
-        }
 
-        // Distancia entre los jugadores
-        float distancia = Vector3.Distance(jugador1.position, jugador2.position);
+        // ==========================================
+        // DISTANCIA REAL ENTRE LOS JUGADORES
+        // ==========================================
 
-        // Convertir la separación en una distancia de cámara
-        float porcentaje = Mathf.Clamp01(distancia / separacionMaxima);
+        float distancia = Vector3.Distance(
+            jugador1.position,
+            jugador2.position
+        );
 
-        float nuevaDistancia = Mathf.Lerp(
-            distanciaMinima,
-            distanciaMaxima,
+
+        // ==========================================
+        // CALCULAR ZOOM
+        // ==========================================
+
+        float porcentaje = Mathf.InverseLerp(
+            separacionMinima,
+            separacionMaxima,
+            distancia
+        );
+
+        float distanciaObjetivo = Mathf.Lerp(
+            distanciaMinimaCamara,
+            distanciaMaximaCamara,
             porcentaje
         );
 
-        // Aplicar distancia a la cámara
+
+        // ==========================================
+        // ZOOM SUAVE
+        // ==========================================
+
         if (thirdPersonFollow != null)
         {
-            thirdPersonFollow.CameraDistance = nuevaDistancia;
+            thirdPersonFollow.CameraDistance = Mathf.MoveTowards(
+                thirdPersonFollow.CameraDistance,
+                distanciaObjetivo,
+                velocidadZoom * Time.deltaTime
+            );
         }
     }
 }
