@@ -520,8 +520,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameModeManager
   jugador2: {fileID: 1149668597}
-  cameraTarget: {fileID: 363784792}
-  camara: {fileID: 1883673536}
+  camaraSolo: {fileID: 0}
+  camaraMultiplayerCompartida: {fileID: 0}
+  camaraP1: {fileID: 0}
+  camaraP2: {fileID: 0}
+  mainCameraSolo: {fileID: 0}
+  mainCameraP1: {fileID: 0}
+  mainCameraP2: {fileID: 0}
 --- !u!4 &222203743
 Transform:
   m_ObjectHideFlags: 0
@@ -1288,9 +1293,13 @@ MonoBehaviour:
   jugador1: {fileID: 274894064}
   jugador2: {fileID: 1149668599}
   camara: {fileID: 1883673536}
-  distanciaMinima: 2
-  distanciaMaxima: 8
+  alturaObjetivo: 1.5
+  suavidadMovimiento: 8
+  distanciaMinimaCamara: 5
+  distanciaMaximaCamara: 12
+  separacionMinima: 3
   separacionMaxima: 15
+  velocidadZoom: 3
 --- !u!4 &363784793
 Transform:
   m_ObjectHideFlags: 0
@@ -3360,7 +3369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751762560753533063, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 751762560753533063, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
+      propertyPath: m_TagString
+      value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 2925786495135818608, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
       propertyPath: m_IsActive

@@ -4,9 +4,11 @@ public class Wather : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        // se revisa que jugador toco el agua
+        if (other.CompareTag("Player") || other.CompareTag("Player2"))
         {
-            PlayerRespawn respawn = other.GetComponent<PlayerRespawn>();
+            // se revisa el componente padre por seguridads
+            PlayerRespawn respawn = other.GetComponentInParent<PlayerRespawn>();
 
             if (respawn != null)
             {
