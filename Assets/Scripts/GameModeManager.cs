@@ -3,7 +3,7 @@ using Unity.Cinemachine;
 
 public class GameModeManager : MonoBehaviour
 {
-    public static bool multiplayer = false;
+    public static bool multiplayer = true;
 
     [Header("Jugador")]
     public GameObject jugador2;
