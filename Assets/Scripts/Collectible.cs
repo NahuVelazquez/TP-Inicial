@@ -13,10 +13,8 @@ public class Collectible : MonoBehaviour
         GameManager gm = FindAnyObjectByType<GameManager>();
         if (gm == null) return;
 
-        // si es el Jugador 2
-        if (other.GetComponentInParent<MovimientoJugadorP2>() != null ||
-            other.gameObject.name.Contains("P2") ||
-            (other.transform.parent != null && other.transform.parent.name.Contains("P2")))
+        // ahora se detecta con tag, para jugador dos su tag es "Player2"
+        if (other.CompareTag("Player2") || (other.transform.parent != null && other.transform.parent.CompareTag("Player2")))
         {
             isCollected = true; // bloquea futuras colisiones
             if (TryGetComponent<Collider>(out var col)) col.enabled = false; // elimina las colisiones al momento
@@ -24,9 +22,8 @@ public class Collectible : MonoBehaviour
             gm.addCollectible(2, pointsValue);
             Destroy(gameObject);
         }
-        // si es el Jugador 1
-        else if (other.GetComponentInParent<MovimientoJugador>() != null ||
-                 other.gameObject.name.Contains("Hero_Rock"))
+        // ahora se detecta con tag, para jugador dos su tag es "Player"
+        else if (other.CompareTag("Player") || (other.transform.parent != null && other.transform.parent.CompareTag("Player")))
         {
             isCollected = true; // bloquea futuras colisiones
             if (TryGetComponent<Collider>(out var col)) col.enabled = false; // elimina las colisiones al momento
