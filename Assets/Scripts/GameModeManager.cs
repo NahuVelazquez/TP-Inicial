@@ -4,6 +4,7 @@ using Unity.Cinemachine;
 public class GameModeManager : MonoBehaviour
 {
     public static bool multiplayer = true;
+    public CameraController cameraControllerP1;
 
     [Header("Jugador")]
     public GameObject jugador2;
@@ -57,6 +58,7 @@ public class GameModeManager : MonoBehaviour
         // Activamos las dos cámaras nuevas
         camaraP1.gameObject.SetActive(true);
         camaraP2.gameObject.SetActive(true);
+        cameraControllerP1.enabled = false;
     }
 
     private void ActivarSolo()
@@ -82,5 +84,6 @@ public class GameModeManager : MonoBehaviour
 
         camaraP1.gameObject.SetActive(false);
         camaraP2.gameObject.SetActive(false);
+        cameraControllerP1.enabled = true;
     }
 }

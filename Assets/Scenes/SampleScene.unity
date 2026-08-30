@@ -658,6 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949cf3817a7d1a444aa35b704391dc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameModeManager
+  cameraControllerP1: {fileID: 274894065}
   jugador2: {fileID: 1149668597}
   camaraSolo: {fileID: 1883673536}
   camaraMultiplayerCompartida: {fileID: 1104895150}
