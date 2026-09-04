@@ -29,14 +29,13 @@ public class GameManager : MonoBehaviour
         collectedItemsCount = 0;
         isGameOver = false;
 
-        // si se tilda isMultiplayer en el Inspector para testear, actualiza GameModeManager; sino toma el valor que vino del Menú Principal
-        if (isMultiplayer)
+        // verifica si el jugador activo el modo multiplayer
+        isMultiplayer = GameModeManager.multiplayer;
+
+        // desactiva el score de p2 si es single player
+        if (!isMultiplayer && scoreP2Text != null)
         {
-            GameModeManager.multiplayer = true;
-        }
-        else
-        {
-            isMultiplayer = GameModeManager.multiplayer;
+            scoreP2Text.transform.parent.gameObject.SetActive(false);
         }
 
         // cuenta cantidad de coleccionables en la escena
@@ -74,10 +73,21 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
+
         if (scoreP1Text != null)
         {
-            scoreP1Text.text = scoreP1.ToString();
+            // si el modo es singleplayer, muestra el puntaje del jugador 1, y los puntos necesarios para ganar
+            if (!isMultiplayer)
+            {
+                scoreP1Text.text = $"{scoreP1} / {targetScore}";
+            }
+            //si es multiplayer solo muestra sus puntos
+            else
+            {
+                scoreP1Text.text = scoreP1.ToString();
+            }
         }
+
         if (scoreP2Text != null)
         {
             scoreP2Text.text = scoreP2.ToString();
@@ -180,5 +190,12 @@ public class GameManager : MonoBehaviour
 
         // recarga la escena desde cero resetea coleccionables, cronómetro y posiciones
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // método para asociar al botón de Volver al Menú en la UI
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f; // asegura que el tiempo vuelva a la normalidad
+        SceneManager.LoadScene("MenuInicial"); // colocá el nombre exacto de tu escena de menú
     }
 }
