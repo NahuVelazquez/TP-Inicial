@@ -1,0 +1,34 @@
+using UnityEngine;
+
+public class PoderVelocidad : MonoBehaviour
+{
+    public float aumentoVelocidad = 3f;
+    public float duracion = 10f;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Jugador 1
+        if (other.CompareTag("Player"))
+        {
+            MovimientoJugador jugador1 = other.GetComponent<MovimientoJugador>();
+
+            if (jugador1 != null)
+            {
+                jugador1.AumentarVelocidad(aumentoVelocidad, duracion);
+                Destroy(gameObject);
+            }
+        }
+
+        // Jugador 2
+        else if (other.CompareTag("Player2"))
+        {
+            MovimientoJugadorP2 jugador2 = other.GetComponent<MovimientoJugadorP2>();
+
+            if (jugador2 != null)
+            {
+                jugador2.AumentarVelocidad(aumentoVelocidad, duracion);
+                Destroy(gameObject);
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class MovimientoJugadorP2 : MonoBehaviour
 {
@@ -81,5 +82,39 @@ public class MovimientoJugadorP2 : MonoBehaviour
         animator.SetBool("IsRunning", isRunning && isMoving);
         animator.SetBool("Grounded", controller.isGrounded);
         animator.SetFloat("VerticalVelocity", verticalVelocity);
+    }
+
+    //poder salto
+    public void AumentarSalto(float aumento, float duracion)
+    {
+        StartCoroutine(PowerUpSalto(aumento, duracion));
+    }
+
+    private IEnumerator PowerUpSalto(float aumento, float duracion)
+    {
+        float saltoOriginal = jumpForce;
+        jumpForce += aumento;
+        yield return new WaitForSeconds(duracion);
+        jumpForce = saltoOriginal;
+    }
+
+    //poder velocidad
+    public void AumentarVelocidad(float aumento, float duracion)
+    {
+        StartCoroutine(PowerUpVelocidad(aumento, duracion));
+    }
+
+    private IEnumerator PowerUpVelocidad(float aumento, float duracion)
+    {
+        float velocidadCaminarOriginal = walkSpeed;
+        float velocidadCorrerOriginal = runSpeed;
+
+        walkSpeed += aumento;
+        runSpeed += aumento;
+
+        yield return new WaitForSeconds(duracion);
+
+        walkSpeed = velocidadCaminarOriginal;
+        runSpeed = velocidadCorrerOriginal;
     }
 }
