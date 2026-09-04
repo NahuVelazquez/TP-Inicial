@@ -73,10 +73,21 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
+
         if (scoreP1Text != null)
         {
-            scoreP1Text.text = scoreP1.ToString();
+            // si el modo es singleplayer, muestra el puntaje del jugador 1, y los puntos necesarios para ganar
+            if (!isMultiplayer)
+            {
+                scoreP1Text.text = $"{scoreP1} / {targetScore}";
+            }
+            //si es multiplayer solo muestra sus puntos
+            else
+            {
+                scoreP1Text.text = scoreP1.ToString();
+            }
         }
+
         if (scoreP2Text != null)
         {
             scoreP2Text.text = scoreP2.ToString();
