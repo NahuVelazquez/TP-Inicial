@@ -29,14 +29,13 @@ public class GameManager : MonoBehaviour
         collectedItemsCount = 0;
         isGameOver = false;
 
-        // si se tilda isMultiplayer en el Inspector para testear, actualiza GameModeManager; sino toma el valor que vino del Menú Principal
-        if (isMultiplayer)
+        // verifica si el jugador activo el modo multiplayer
+        isMultiplayer = GameModeManager.multiplayer;
+
+        // desactiva el score de p2 si es single player
+        if (!isMultiplayer && scoreP2Text != null)
         {
-            GameModeManager.multiplayer = true;
-        }
-        else
-        {
-            isMultiplayer = GameModeManager.multiplayer;
+            scoreP2Text.transform.parent.gameObject.SetActive(false);
         }
 
         // cuenta cantidad de coleccionables en la escena
