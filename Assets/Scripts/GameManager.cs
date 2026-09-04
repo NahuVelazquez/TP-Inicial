@@ -191,4 +191,11 @@ public class GameManager : MonoBehaviour
         // recarga la escena desde cero resetea coleccionables, cronómetro y posiciones
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    // método para asociar al botón de Volver al Menú en la UI
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f; // asegura que el tiempo vuelva a la normalidad
+        SceneManager.LoadScene("MenuInicial"); // colocá el nombre exacto de tu escena de menú
+    }
 }
