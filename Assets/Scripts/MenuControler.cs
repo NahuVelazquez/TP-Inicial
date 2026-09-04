@@ -27,4 +27,8 @@ public void JugarMultiplayer()
     GameModeManager.multiplayer = true;
     UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
 }
+  public void AbrirOpciones()
+    {
+        SceneManager.LoadScene("Opciones");
+    }
 }
