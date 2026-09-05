@@ -7,7 +7,7 @@ public class MenuInicial : MonoBehaviour
      public void Jugar()
 {
     GameModeManager.multiplayer = false;
-    SceneManager.LoadScene("SampleScene");
+    SceneManager.LoadScene("Reglas");
 }
     public void Salir()
     {
@@ -25,10 +25,14 @@ public class MenuInicial : MonoBehaviour
 public void JugarMultiplayer()
 {
     GameModeManager.multiplayer = true;
-    UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+    UnityEngine.SceneManagement.SceneManager.LoadScene("Reglas");
 }
   public void AbrirOpciones()
     {
         SceneManager.LoadScene("Opciones");
     }
+    public void ComenzarJuego()
+{
+    SceneManager.LoadScene("SampleScene");
+}
 }
