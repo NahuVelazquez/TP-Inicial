@@ -58,7 +58,7 @@ public class GameModeManager : MonoBehaviour
         // Activamos las dos cámaras nuevas
         camaraP1.gameObject.SetActive(true);
         camaraP2.gameObject.SetActive(true);
-        cameraControllerP1.enabled = false;
+        cameraControllerP1.enabled = true;
     }
 
     private void ActivarSolo()
