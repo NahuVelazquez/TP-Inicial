@@ -16,11 +16,14 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-         yaw += lookInput.x * sensitivity;  //rotacion horizontal
-         pitch -= lookInput.y * sensitivity;    //rotacion vertical
+        // se aplica el valor definido en game settings al mouse (tanto horizontal como vertical)
+        float finalSensitivity = sensitivity * GameSettings.MouseSensitivity;
 
-         pitch = Mathf.Clamp(pitch, -45f, 60f); //para que la camara no se meta dentro del escenario
+        yaw += lookInput.x * finalSensitivity;  //rotacion horizontal
+        pitch -= lookInput.y * finalSensitivity;    //rotacion vertical
 
-         pivot.localRotation = Quaternion.Euler(pitch, yaw, 0);
-    }   
+        pitch = Mathf.Clamp(pitch, -45f, 60f); //para que la camara no se meta dentro del escenario
+
+        pivot.localRotation = Quaternion.Euler(pitch, yaw, 0);
+    }
 }

@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    gameOverResultText.text = $"¡EMPATE!\nAmbos consiguieron {scoreP1} pts";
+                    gameOverResultText.text = $"¡EMPATE!\nAmbos sumaron {scoreP1} pts";
                 }
             }
             else // esta rama es para el modo un jugador
