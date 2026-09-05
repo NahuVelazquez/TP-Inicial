@@ -1693,7 +1693,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1831850876}
+    TrackingTarget: {fileID: 179157156}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -1725,7 +1725,7 @@ Transform:
   m_GameObject: {fileID: 95782177}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.47, y: 5.21, z: -6.05}
+  m_LocalPosition: {x: -1.33508, y: -4.67452, z: -16.28675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2444,6 +2444,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d15687c985af5c4bb9c8b297344a773, type: 3}
+--- !u!1 &179157154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179157156}
+  - component: {fileID: 179157155}
+  m_Layer: 0
+  m_Name: Target_P1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &179157155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179157154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505715a952f8b504d984f46f698a1ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraTarget90
+  jugador: {fileID: 274894064}
+  offset: {x: 0, y: 1.2, z: 0}
+  smoothSpeed: 10
+  teclaIzquierda: 31
+  teclaDerecha: 19
+--- !u!4 &179157156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179157154}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.83508, y: -6.07452, z: -12.28675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &179379327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3048,6 +3097,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameModeManager
   cameraControllerP1: {fileID: 274894065}
+  pivotSingleplayer: {fileID: 0}
+  pivotMultiplayer: {fileID: 0}
+  jugador1Movimiento: {fileID: 0}
   jugador2: {fileID: 1149668597}
   camaraSolo: {fileID: 1883673536}
   camaraMultiplayerCompartida: {fileID: 1104895150}
@@ -3807,7 +3859,19 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ba4d868-4032-4069-9123-7081d46eb369
+    m_ActionName: 'Player2/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fade41ba-fc0e-488e-a1f1-796d3cee0e29
+    m_ActionName: 'Player2/Sprint[/Keyboard/rightShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee56f12d-00e3-4c9f-9355-9979dc4f54d3
+    m_ActionName: 'Player2/Jump[/Keyboard/ctrl]'
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -15227,9 +15291,6 @@ PrefabInstance:
       addedObject: {fileID: 1149668604}
     - targetCorrespondingSourceObject: {fileID: 751762560753533063, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1149668603}
-    - targetCorrespondingSourceObject: {fileID: 751762560753533063, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1149668602}
     - targetCorrespondingSourceObject: {fileID: 751762560753533063, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
       insertIndex: -1
@@ -15241,11 +15302,6 @@ PrefabInstance:
 --- !u!1 &1149668597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 751762560753533063, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
-  m_PrefabInstance: {fileID: 1149668596}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1149668598 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2581033161379346890, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
   m_PrefabInstance: {fileID: 1149668596}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1149668599 stripped
@@ -15265,9 +15321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb1c976d749b9b4c97f86e23abedf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoJugadorP2
+  gravity: -9.8
+  modelTransform: {fileID: 0}
+  cameraPivot: {fileID: 1808641866}
   walkSpeed: 3
   runSpeed: 6
-  gravity: -9.8
   jumpForce: 5
 --- !u!114 &1149668601
 MonoBehaviour:
@@ -15297,24 +15355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   pivot: {fileID: 1712793123}
   sensitivity: 0.2
---- !u!114 &1149668603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149668597}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e66c294a7e1e947bbe6691a9f21664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovimientoJugador
-  gravity: -9.8
-  modelTransform: {fileID: 1149668598}
-  cameraPivot: {fileID: 1712793123}
-  walkSpeed: 3
-  runSpeed: 6
-  jumpForce: 5
 --- !u!114 &1149668604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15322,7 +15362,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149668597}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -15342,7 +15382,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1149668603}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -15378,7 +15418,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1149668603}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 0
@@ -15398,7 +15438,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Crouch[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1149668603}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -15422,7 +15462,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1149668603}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
         m_MethodName: OnSprint
         m_Mode: 0
@@ -15476,9 +15516,57 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1149668600}
+        m_TargetAssemblyTypeName: MovimientoJugadorP2, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1ba4d868-4032-4069-9123-7081d46eb369
+    m_ActionName: 'Player2/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1149668600}
+        m_TargetAssemblyTypeName: MovimientoJugadorP2, Assembly-CSharp
+        m_MethodName: OnSprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fade41ba-fc0e-488e-a1f1-796d3cee0e29
+    m_ActionName: 'Player2/Sprint[/Keyboard/rightShift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1149668600}
+        m_TargetAssemblyTypeName: MovimientoJugadorP2, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ee56f12d-00e3-4c9f-9355-9979dc4f54d3
+    m_ActionName: 'Player2/Jump[/Keyboard/ctrl]'
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Player2
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!143 &1149668605
@@ -20401,7 +20489,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1232645198}
+    TrackingTarget: {fileID: 1808641866}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -20433,7 +20521,7 @@ Transform:
   m_GameObject: {fileID: 1566739722}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.74604, y: 9.728689, z: -0.2381401}
+  m_LocalPosition: {x: -1.33508, y: -4.67452, z: -16.28675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21203,6 +21291,62 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c4d8a3597b31ec4191e9d885761eac3, type: 3}
+--- !u!1 &1623205797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1623205799}
+  - component: {fileID: 1623205798}
+  m_Layer: 0
+  m_Name: GameModeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1623205798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623205797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949cf3817a7d1a444aa35b704391dc2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameModeManager
+  cameraControllerP1: {fileID: 0}
+  pivotSingleplayer: {fileID: 0}
+  pivotMultiplayer: {fileID: 179157156}
+  jugador1Movimiento: {fileID: 274894061}
+  jugador2: {fileID: 1149668597}
+  camaraSolo: {fileID: 1883673536}
+  camaraMultiplayerCompartida: {fileID: 1104895150}
+  camaraP1: {fileID: 95782179}
+  camaraP2: {fileID: 1566739724}
+  mainCameraSolo: {fileID: 330585543}
+  mainCameraP1: {fileID: 1162684907}
+  mainCameraP2: {fileID: 813642116}
+--- !u!4 &1623205799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623205797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.83508, y: -6.07452, z: -12.28675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1623422568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23065,6 +23209,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f593bc20677ebf14abd27a4853408c68, type: 3}
+--- !u!1 &1808641865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808641866}
+  - component: {fileID: 1808641867}
+  m_Layer: 0
+  m_Name: Target_P2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1808641866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808641865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.83508, y: -6.07452, z: -12.28675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1808641867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808641865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505715a952f8b504d984f46f698a1ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraTarget90
+  jugador: {fileID: 1149668599}
+  offset: {x: 0, y: 1.2, z: 0}
+  smoothSpeed: 10
+  teclaIzquierda: 85
+  teclaDerecha: 87
 --- !u!4 &1811291389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1613405204415282977, guid: 625be04a79e886011b394401779f8a60, type: 3}
@@ -24697,7 +24890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bcdf4d309f8e447ae61a8deb39f9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  initialTime: 10
+  initialTime: 100
   timerText: {fileID: 1602919979}
   gameManager: {fileID: 222203744}
 --- !u!4 &1949415672
@@ -26392,17 +26585,20 @@ SceneRoots:
   - {fileID: 95782180}
   - {fileID: 1566739725}
   - {fileID: 1104895152}
+  - {fileID: 222203743}
+  - {fileID: 1623205799}
+  - {fileID: 192298438}
   - {fileID: 1362181932}
   - {fileID: 33326702}
   - {fileID: 1929554368}
   - {fileID: 1014335906}
-  - {fileID: 192298438}
   - {fileID: 782560557}
   - {fileID: 538825715}
   - {fileID: 363784793}
   - {fileID: 882399470}
   - {fileID: 1232645198}
-  - {fileID: 222203743}
+  - {fileID: 179157156}
+  - {fileID: 1808641866}
   - {fileID: 1697423370}
   - {fileID: 1949415672}
   - {fileID: 1636110340}

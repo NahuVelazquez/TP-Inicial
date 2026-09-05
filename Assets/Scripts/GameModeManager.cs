@@ -4,10 +4,22 @@ using Unity.Cinemachine;
 public class GameModeManager : MonoBehaviour
 {
     public static bool multiplayer = true;
+
+    // =====================================
+    // CONTROLADOR DE CAMARA SINGLEPLAYER (OPCIONAL)
+    // =====================================
     public CameraController cameraControllerP1;
 
+    // =====================================
+    // REFERENCIAS DE PIVOTES Y MOVIMIENTO PARA PJ1
+    // =====================================
+    [Header("Pivotes de Cámara para PJ1")]
+    public Transform pivotSingleplayer;  // ARRASTRAR CameraPivot (MOUSE)
+    public Transform pivotMultiplayer;   // ARRASTRAR Target_P1 (ROTACION A 90 GRADOS)
+    public MovimientoJugador jugador1Movimiento; // ARRASTRAR Hero_Rock
+
     [Header("Jugador")]
-    public GameObject jugador2;
+    public GameObject jugador2; // ARRASTRAR Hero_Rock_P2
 
     [Header("Cámaras Cinemachine")]
     public CinemachineCamera camaraSolo;
@@ -34,56 +46,100 @@ public class GameModeManager : MonoBehaviour
 
     private void ActivarMultiplayer()
     {
-        // Activar jugador 2
-        jugador2.SetActive(true);
+        // =====================================
+        // ACTIVAR JUGADOR 2
+        // =====================================
+        if (jugador2 != null)
+            jugador2.SetActive(true);
 
         // =====================================
-        // CÁMARAS PRINCIPALES
+        // CÁMARAS PRINCIPALES (CON CHEQUEO DE NULOS)
         // =====================================
+        if (mainCameraSolo != null)
+            mainCameraSolo.SetActive(false);
 
-        mainCameraSolo.SetActive(false);
-        mainCameraP1.SetActive(true);
-        mainCameraP2.SetActive(true);
+        if (mainCameraP1 != null)
+            mainCameraP1.SetActive(true);
+
+        if (mainCameraP2 != null)
+            mainCameraP2.SetActive(true);
 
         // =====================================
-        // CINEMACHINE
+        // CINEMACHINE (CON CHEQUEO DE NULOS)
         // =====================================
+        if (camaraSolo != null)
+            camaraSolo.gameObject.SetActive(false);
 
-        camaraSolo.gameObject.SetActive(false);
+        if (camaraMultiplayerCompartida != null)
+            camaraMultiplayerCompartida.gameObject.SetActive(false);
 
-        // Desactivamos la cámara multiplayer
-        // compartida que hicimos anteriormente
-        camaraMultiplayerCompartida.gameObject.SetActive(false);
+        if (camaraP1 != null)
+            camaraP1.gameObject.SetActive(true);
 
-        // Activamos las dos cámaras nuevas
-        camaraP1.gameObject.SetActive(true);
-        camaraP2.gameObject.SetActive(true);
-        cameraControllerP1.enabled = true;
+        if (camaraP2 != null)
+            camaraP2.gameObject.SetActive(true);
+
+        if (cameraControllerP1 != null)
+            cameraControllerP1.enabled = false;
+
+        // =====================================
+        // ASIGNAR PIVOTE DE 90 GRADOS A PJ1 EN MULTIPLAYER
+        // =====================================
+        if (jugador1Movimiento != null && pivotMultiplayer != null)
+        {
+            jugador1Movimiento.cameraPivot = pivotMultiplayer;
+            Debug.Log("[GameModeManager] Target_P1 asignado exitosamente como cameraPivot en Hero_Rock.");
+        }
+        else
+        {
+            Debug.LogWarning("[GameModeManager] Faltan asignar jugador1Movimiento o pivotMultiplayer en el Inspector.");
+        }
     }
 
     private void ActivarSolo()
     {
-        // Ocultar jugador 2
-        jugador2.SetActive(false);
+        // =====================================
+        // DESACTIVAR JUGADOR 2
+        // =====================================
+        if (jugador2 != null)
+            jugador2.SetActive(false);
 
         // =====================================
-        // CÁMARAS PRINCIPALES
+        // CÁMARAS PRINCIPALES (CON CHEQUEO DE NULOS)
         // =====================================
+        if (mainCameraSolo != null)
+            mainCameraSolo.SetActive(true);
 
-        mainCameraSolo.SetActive(true);
-        mainCameraP1.SetActive(false);
-        mainCameraP2.SetActive(false);
+        if (mainCameraP1 != null)
+            mainCameraP1.SetActive(false);
+
+        if (mainCameraP2 != null)
+            mainCameraP2.SetActive(false);
 
         // =====================================
-        // CINEMACHINE
+        // CINEMACHINE (CON CHEQUEO DE NULOS)
         // =====================================
+        if (camaraSolo != null)
+            camaraSolo.gameObject.SetActive(true);
 
-        camaraSolo.gameObject.SetActive(true);
+        if (camaraMultiplayerCompartida != null)
+            camaraMultiplayerCompartida.gameObject.SetActive(false);
 
-        camaraMultiplayerCompartida.gameObject.SetActive(false);
+        if (camaraP1 != null)
+            camaraP1.gameObject.SetActive(false);
 
-        camaraP1.gameObject.SetActive(false);
-        camaraP2.gameObject.SetActive(false);
-        cameraControllerP1.enabled = true;
+        if (camaraP2 != null)
+            camaraP2.gameObject.SetActive(false);
+
+        if (cameraControllerP1 != null)
+            cameraControllerP1.enabled = true;
+
+        // =====================================
+        // RESTAURAR PIVOTE ORIGINAL A PJ1 EN SINGLEPLAYER
+        // =====================================
+        if (jugador1Movimiento != null && pivotSingleplayer != null)
+        {
+            jugador1Movimiento.cameraPivot = pivotSingleplayer;
+        }
     }
 }
